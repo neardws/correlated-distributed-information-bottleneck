@@ -95,9 +95,19 @@ $$\frac1n I(X^n;J)\ge I_{P^\star}(X;U_1,U_2\mid Q)+\log_2(1-\alpha)-\eta(\tau)-P
 
 $$\frac1n I(X^n;J)\ge I_{P^\star}(X;U_1,U_2\mid Q)+\log_2(1-\alpha)-\delta,$$
 
-同时 $(1/n)\log_2|\mathcal J_i|$ 不超过相应的 Berger–Tung 互信息加上该裕量。[编码模型](coding-model.md) 的重复加尾部把这个有限块长变成一条序列。$\delta$ 任意，闭包去掉裕量，于是平滑阈值 $I_{P^\star}(X;U_1,U_2\mid Q)+\log_2(1-\alpha)$ 可实现。
+同时两个码率严格满足本节开头的三条 Berger–Tung 速率不等式，并带有该裕量。这三条是
 
-再取 $\alpha_k=1/k$。第 $k$ 个有限块长码的归一化相关度至少是 $I_{P^\star}(X;U_1,U_2\mid Q)+\log_2(1-\alpha_k)-1/k$，速率裕量为 $1/k$。$\log_2(1-\alpha_k)\to 0$。这些点的极限是速率等于参考律中的 Berger–Tung 互信息、相关度阈值等于 $I_{P^\star}(X;U_1,U_2\mid Q)$ 的元组。操作区域取闭包，所以该元组可实现：存在某条确定性码序列，满足
+$$
+\begin{aligned}
+R_1&\ge I(Y_1;U_1\mid U_2,Q),\\
+R_2&\ge I(Y_2;U_2\mid U_1,Q),\\
+R_1+R_2&\ge I(Y_1,Y_2;U_1,U_2\mid Q).
+\end{aligned}
+$$
+
+它们不是两个条件互信息下界同时取等。[编码模型](coding-model.md) 的重复加尾部把这个有限块长变成一条序列。$\delta$ 任意，闭包去掉裕量，于是平滑阈值 $I_{P^\star}(X;U_1,U_2\mid Q)+\log_2(1-\alpha)$ 可实现。
+
+再取整数 $k\ge 2$，令 $\alpha_k=1/k$。第 $k$ 个有限块长码的归一化相关度至少是 $I_{P^\star}(X;U_1,U_2\mid Q)+\log_2(1-\alpha_k)-1/k$，三条速率不等式都留有 $1/k$ 的裕量。$\log_2(1-\alpha_k)\to 0$。这些点的极限是满足上述三条速率不等式、相关度阈值等于 $I_{P^\star}(X;U_1,U_2\mid Q)$ 的元组。操作区域取闭包，所以该元组可实现：存在某条确定性码序列，满足
 
 $$\liminf_{n\to\infty}\frac1n I(X^n;J)\ge I_{P^\star}(X;U_1,U_2\mid Q).$$
 
