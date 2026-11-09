@@ -1,6 +1,6 @@
 # 主要文献
 
-BibTeX 只收录下面三篇。字段以 2026-11-09 核对过的 arXiv API、Crossref 和 DataCite 记录为准。作者电子邮件和通信地址不录入。本仓库不保存论文全文。
+BibTeX 收录下面的文献。字段以 2026-11-09 核对过的 arXiv API、Crossref 和 DataCite 记录为准。作者电子邮件、通信地址和单位不录入。本仓库不保存论文全文。DataCite 的 creator 字段不转写成 editor。
 
 机器可读题录：[primary.bib](../references/primary.bib)。
 
@@ -47,10 +47,20 @@ Iñaki Estella Aguerri，Abdellatif Zaidi。*Distributed Information Bottleneck 
 - arXiv:1709.09082v3，首次提交 2017-09-26，v3 更新于 2017-10-03。arXiv 评论写明投稿 2018 International Zurich Seminar on Information and Communication。版本记录：[abs/1709.09082](https://arxiv.org/abs/1709.09082)。核对用的 HTML：[html/1709.09082v3](https://arxiv.org/html/1709.09082v3)。
 - 会议页面 [IZS 2018](https://www.izs.ethz.ch/2018/) 写明会期为 2018 年 2 月 21–23 日。程序页 [Program.html](https://www.izs.ethz.ch/2018/Program.html) 列出该报告及两位作者。
 - 论文 DOI：[10.3929/ethz-b-000245048](https://doi.org/10.3929/ethz-b-000245048)。DataCite 记录的出版者是 ETH Zurich，日期类型 Available 为 2018-02，资源类型为 Conference Paper。
-- 论文集 DOI：[10.3929/ethz-b-000242151](https://doi.org/10.3929/ethz-b-000242151)。DataCite 题名为 *International Zurich Seminar on Information and Communication (IZS 2018): Proceedings*，创建者是 Amos Lapidoth 与 Stefan M. Moser，Available 日期为 2018-02-21。BibTeX 的 `editor` 取自这一论文集记录。论文自己的 DataCite 记录没有编辑者字段。
+- 论文集 DOI：[10.3929/ethz-b-000242151](https://doi.org/10.3929/ethz-b-000242151)。DataCite 题名为 *International Zurich Seminar on Information and Communication (IZS 2018): Proceedings*，Available 日期为 2018-02-21。该记录有 creator 字段。没有标题页证明这些人是编辑，所以 BibTeX 不设 `editor`。
 - 论文 DataCite 记录没有页码。后来文献中出现过的页码不写入 BibTeX。
 
 这篇是记号和定理范围的短前驱。它假设条件独立。它不是“相关噪声特例此后仍然开放”的独立证据。方程 (4) 的符号差异写在 [已知结果](known-results.md)。
+
+## 4. Yuan、Wu 与 Zhou，面向任务的分布式跨模态信源编码
+
+Zhe Yuan，Dan Wu，Liang Zhou。*Rate–Distortion Theory for Task-Oriented Distributed Cross-Modal Source Coding*。
+
+- 期刊：IEEE Transactions on Communications，74:5366–5381，2026。Crossref 没有期号。
+- DOI：[10.1109/TCOMM.2026.3666617](https://doi.org/10.1109/TCOMM.2026.3666617)。2026-11-09 的 Crossref 记录确认标题、三位作者、期刊、卷、页码和年份。同日该 DOI 返回 202，跳转到 `https://ieeexplore.ieee.org/document/11404184/`。
+- arXiv API 用题名和作者检索，`totalResults` 为 0。没有可用的 arXiv 全文。
+- 公开页面上能看到摘要，摘要把模型说成带语义先验的对数损失 CEO 型多终端信源编码。摘要不是全文。定理假设、辅助变量和是否包含 $p=1/4$、$q=1/8$ 都没有核对。
+- 因此这篇文献只作为需要继续核对的邻近工作列入。它不证明该测试点已被覆盖，也不证明该测试点仍开放，更不构成 2026 年的新颖性证书。
 
 ## 元数据核对
 
@@ -62,7 +72,8 @@ Iñaki Estella Aguerri，Abdellatif Zaidi。*Distributed Information Bottleneck 
 | Crossref `10.1109/TPAMI.2019.2928806` | 卷 43、期 1、页 120–138、出版日期 2021-01-01 |
 | Crossref `10.1109/TIT.2013.2288257` | 卷 60、期 1、页 740–761、2014 年 1 月 |
 | DataCite `10.3929/ethz-b-000245048` | 标题、两位作者、ETH Zurich、2018 |
-| DataCite `10.3929/ethz-b-000242151` | 论文集标题、两位编辑、Available 日期 2018-02-21 |
+| DataCite `10.3929/ethz-b-000242151` | 论文集标题、Available 日期 2018-02-21。creator 字段不记为 editor |
+| Crossref `10.1109/TCOMM.2026.3666617` | 卷 74、页 5366–5381、2026；无期号。全文未核对 |
 | HTML 与 DOI 链接 | 见下方链接检查。两个 ETH DOI 在同日既出现过 200，也出现过 HTTP 500；题录以同日返回 200 的 DataCite API 为准 |
 
 链接检查时各 URL 的状态：
@@ -74,5 +85,6 @@ Iñaki Estella Aguerri，Abdellatif Zaidi。*Distributed Information Bottleneck 
 - `https://doi.org/10.1109/TIT.2013.2288257`：202，跳转到 `https://ieeexplore.ieee.org/document/6651793/`。
 - `https://doi.org/10.3929/ethz-b-000245048` 与 `https://doi.org/10.3929/ethz-b-000242151`：同日的访问里既有 200，也有 HTTP 500 或超时。论文 DOI 的一次成功访问跳到 ETH Research Collection 条目。两个 DOI 的 DataCite API 记录同日返回 200。旧 handle `http://hdl.handle.net/20.500.11850/245048` 返回 500，所以正文使用 DOI，不使用该 handle。
 - `https://www.izs.ethz.ch/2018/` 与 `https://www.izs.ethz.ch/2018/Program.html`：200。
+- `https://doi.org/10.1109/TCOMM.2026.3666617`：202，跳转到 `https://ieeexplore.ieee.org/document/11404184/`。页面提供摘要，不提供已核对的全文。
 
 期刊 PDF 上的定理编号和页内公式没有重新核对。若期刊排版与 arXiv v3 不同，以以后对照期刊 PDF 的结果改正编号，不在未对照时改写上表。
