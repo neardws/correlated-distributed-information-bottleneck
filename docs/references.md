@@ -60,7 +60,38 @@ Zhe Yuan，Dan Wu，Liang Zhou。*Rate–Distortion Theory for Task-Oriented Dis
 - DOI：[10.1109/TCOMM.2026.3666617](https://doi.org/10.1109/TCOMM.2026.3666617)。2026-11-09 的 Crossref 记录确认标题、三位作者、期刊、卷、页码和年份。同日该 DOI 返回 202，跳转到 `https://ieeexplore.ieee.org/document/11404184/`。
 - arXiv API 用题名和作者检索，`totalResults` 为 0。没有可用的 arXiv 全文。
 - 公开页面上能看到摘要，摘要把模型说成带语义先验的对数损失 CEO 型多终端信源编码。摘要不是全文。定理假设、辅助变量和是否包含 $p=1/4$、$q=1/8$ 都没有核对。
-- 因此这篇文献只作为需要继续核对的邻近工作列入。它不证明该测试点已被覆盖，也不证明该测试点仍开放，更不构成 2026 年的新颖性证书。
+- 因此这篇文献只作为需要继续核对的邻近工作列入。它不证明该测试点已被覆盖，也不证明该测试点仍开放，更不构成 2026 年的新颖性证书。证明笔记使用这条限制，不把它的全文当作已审核材料。
+
+## 5. Goldfeld 与 Polyanskiy，信息瓶颈及其机器学习应用
+
+Ziv Goldfeld，Yury Polyanskiy。*The Information Bottleneck Problem and Its Applications in Machine Learning*。
+
+- arXiv:2004.14941。2026-11-09 的 arXiv API 给出的最新版本是 v2，更新于 2020-05-01。版本记录：[abs/2004.14941](https://arxiv.org/abs/2004.14941)。
+- 证明笔记沿用原稿对 §III 式 (11)–(16) 的指向，并说明该综述的操作损失是逐符号 log-loss。本次没有对照 PDF 重核这些公式编号。笔记中的 block converse 是自包含的，不依赖这次未做的对照。
+
+## 6. Cheng，Mrs. Gerber 引理的推广
+
+Fan Cheng。*Generalization of Mrs. Gerber’s lemma*。
+
+- 期刊：Communications in Information and Systems，14(2):79–86，2014。
+- DOI：[10.4310/cis.2014.v14.n2.a1](https://doi.org/10.4310/cis.2014.v14.n2.a1)。2026-11-09 的 Crossref 记录确认标题、作者、期刊、卷 14、期 2 和页码 79–86。
+- 证明笔记引用 Lemma 1 的凸性陈述，并自包含地重证所需特例。期刊 PDF 没有收入仓库，公式编号没有用 PDF 再核一遍。
+
+## 7. Dobrushin 与 Tsybakov，带附加噪声的信息传输
+
+R. Dobrushin，B. Tsybakov。*Information transmission with additional noise*。
+
+- 期刊：IEEE Transactions on Information Theory，8(5):293–304，1962 年 9 月。
+- DOI：[10.1109/TIT.1962.1057738](https://doi.org/10.1109/TIT.1962.1057738)。2026-11-09 的 Crossref 记录确认标题、作者姓名的首字母形式、期刊、卷、期、页码和日期。
+- 原始全文尚未核实。证明笔记不把未核的定理编号或证明当作逻辑依赖。BibTeX 不把首字母展开成未核对的全名。
+
+## 8. Wyner 与 Ziv，某些二元序列的熵
+
+A. Wyner，J. Ziv。*A theorem on the entropy of certain binary sequences and applications—I*。
+
+- 期刊：IEEE Transactions on Information Theory，19(6):769–772，1973 年 11 月。
+- DOI：[10.1109/TIT.1973.1055107](https://doi.org/10.1109/TIT.1973.1055107)。2026-11-09 的 Crossref 记录确认标题、作者姓名的首字母形式、期刊、卷、期、页码和日期。
+- 原始全文尚未核实。自然底与 bit 换底后的参数区间由证明笔记自行写明，不依赖这篇未读全文。
 
 ## 元数据核对
 
@@ -74,6 +105,10 @@ Zhe Yuan，Dan Wu，Liang Zhou。*Rate–Distortion Theory for Task-Oriented Dis
 | DataCite `10.3929/ethz-b-000245048` | 标题、两位作者、ETH Zurich、2018 |
 | DataCite `10.3929/ethz-b-000242151` | 论文集标题、Available 日期 2018-02-21。creator 字段不记为 editor |
 | Crossref `10.1109/TCOMM.2026.3666617` | 卷 74、页 5366–5381、2026；无期号。全文未核对 |
+| arXiv API `2004.14941` | 最新版本 v2，更新于 2020-05-01；作者 Ziv Goldfeld、Yury Polyanskiy。§III 公式编号未对照 PDF |
+| Crossref `10.4310/cis.2014.v14.n2.a1` | 卷 14、期 2、页 79–86、2014；作者 Fan Cheng。全文未收入仓库 |
+| Crossref `10.1109/TIT.1962.1057738` | 卷 8、期 5、页 293–304、1962 年 9 月。全文未核实 |
+| Crossref `10.1109/TIT.1973.1055107` | 卷 19、期 6、页 769–772、1973 年 11 月。全文未核实 |
 | HTML 与 DOI 链接 | 见下方链接检查。两个 ETH DOI 在同日既出现过 200，也出现过 HTTP 500；题录以同日返回 200 的 DataCite API 为准 |
 
 链接检查时各 URL 的状态：
