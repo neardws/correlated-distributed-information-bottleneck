@@ -23,39 +23,87 @@ $$
 
 内界是这些元组对所有有限 $\mathcal{U}_1,\mathcal{U}_2,\mathcal{Q}$ 取的并，再取闭包。写出这个并不需要一个统一的辅助基数上界。基数截止只在把并收成有限搜索时才需要；没有截止，内界仍然成立，只是不能被有限网格穷尽。
 
-最后一行是可达到的相关度阈值，不是消息互信息的数据处理上界。$U_i$ 是单字母辅助设计，$J_i$ 是块消息，两者不是同一个随机变量。方案保证
+最后一行是可达到的相关度阈值，不是消息互信息的数据处理上界，也不是归一化消息互信息的极限值。$U_i$ 是参考设计中的辅助变量，$J_i$ 是块消息。下面只证明
 
-$$\liminf_{n\to\infty}\frac1n I(X^n;J_1,J_2)\ge I(X;U_1,U_2\mid Q).$$
+$$\liminf_{n\to\infty}\frac1n I(X^n;J_1,J_2)\ge I_{P^\star}(X;U_1,U_2\mid Q).$$
 
-因此任何不超过右边的 $\Delta$ 都可实现：同一组消息已经达到不低于该值的相关度，更低的目标自动满足。不能把 $I(X;U_1,U_2\mid Q)$ 读成 $(1/n)I(X^n;J_1,J_2)$ 的上界。消息相关度的上界是下面的初等外界，它只用 $J_i=f_i(Y_i^n)$ 和消息基数。
+因此任何不超过右边的 $\Delta$ 都可实现。不证明 $(1/n)I(X^n;J_1,J_2)$ 收敛到该单字母互信息。消息相关度的上界仍是后面的初等外界。
 
-### 量化分箱
+### 参考分布与固定码本
 
-$Q$ 按 [编码模型](coding-model.md) 的确定性子块调度固定，不使用运行时共享种子。在类型 $q$ 的子块上，局部乘积核是
+单字母量在参考分布
 
-$$p(u_1^n,u_2^n\mid y_1^n,y_2^n,q)=\prod_t p(u_{1,t}\mid y_{1,t},q)\,p(u_{2,t}\mid y_{2,t},q).$$
+$$P^\star(q,x,y_1,y_2,u_1,u_2)=p(q)\,p(x,y_1,y_2)\,p(u_1\mid y_1,q)\,p(u_2\mid y_2,q)$$
 
-编码器 $i$ 只看 $Y_i^n$。随机码本只是存在性论证：有一组码本使下面的误差概率趋于零，于是把这一组码本固定。固定之后，编码器 $i$ 在自己的码本里按既定顺序选取与 $Y_i^n$ 联合典型的 $U_i^n$，再发送该码字的箱索引 $J_i$。这个映射是确定性的。
+下计算。乘积核
 
-译码器看不到 $X^n$。它在收到的箱里用联合典型性恢复 $(\hat U_1^n,\hat U_2^n)$。误差分析用的是 $(X^n,Y_1^n,Y_2^n,U_1^n,U_2^n)$ 的联合典型集：远程目标 $X$ 进入典型性，是因为局部乘积核和源的联合分布一起决定 $(X,U_1,U_2)$ 的边缘，不是因为译码器观察到了 $X$。恢复成功时 $\hat U_i^n=U_i^n$。$\hat U_i^n$ 始终是消息的函数，所以
+$$\prod_{t=1}^n p^\star(u_{1,t}\mid y_{1,t},q)\,p^\star(u_{2,t}\mid y_{2,t},q)$$
 
-$$I(X^n;J_1,J_2)\ge I(X^n;\hat U_1^n,\hat U_2^n).$$
+只描述参考律，不是固定码本之后编码器的实际条件输出分布。在 $P^\star$ 下有马尔可夫链 $U_i-(Y_i,Q)-(X,Y_{3-i},U_{3-i})$。随机码本按 $P^\star_{U_i\mid Q}$ 的边缘独立抽取。联合典型性引理和马尔可夫引理只在这个系综上使用：箱速率严格大于参考律中的 Berger–Tung 互信息时，系综的箱解码错误，以及 $(X^n,Y_1^n,Y_2^n,U_1^n,U_2^n)$ 偏离 $P^\star$ 的概率，都可以任意小。$X^n$ 出现在系综的联合典型事件里。译码器看不到 $X^n$。
 
-箱速率严格大于这些互信息时，错误概率趋于零。有限字母上，错误事件对归一化互信息的贡献也趋于零，于是 $(1/n)I(X^n;\hat U_1^n,\hat U_2^n)$ 趋于 $I(X;U_1,U_2\mid Q)$。这给出上面的 $\liminf$。非严格的速率边界由操作区域的闭包收入。这些速率条件不使用 $Y_1-X-Y_2$。
+码本的惩罚是源分布下的平均：箱解码失败，或选中码字与 $(X^n,Y_1^n,Y_2^n)$ 的联合型离 $P^\star$ 超过容差 $\tau$。系综平均惩罚小，就存在一组码本，其惩罚不超过该平均。固定这一组时只看该平均惩罚。这个选择不读取某一次源实现里译码是否成功。
 
-### 对数损失的平滑
+固定之后，编码器 $i$ 只读 $Y_i^n$，在固定列表上按既定顺序取码字并发送箱索引。映射是确定性的，运行时不再抽取乘积核。编码器的实际条件输出是 $0$-$1$ 分布，一般不等于上面的参考乘积核。$Q$ 仍是 [编码模型](coding-model.md) 里事先固定的子块调度。
 
-若把同一方案读成整块对数损失，理想条件分布可能在某些序列上为零，对数无定义。取 $\varepsilon\in(0,1)$ 和字母上的全支撑分布 $\pi$，译码器输出
+### 相关度下界
 
-$$q_\varepsilon(x^n\mid \hat u_1^n,\hat u_2^n)=(1-\varepsilon)\,p(x^n\mid \hat u_1^n,\hat u_2^n)+\varepsilon\,\pi^{\otimes n}(x^n).$$
+译码器对每个符号使用同一个预测，只依赖它自己的输出 $(\hat u_1,\hat u_2)$ 和已知的 $q$。取 $\alpha\in(0,1)$，
 
-恢复失败时改用 $\pi^{\otimes n}$。$\pi$ 有最小正概率，于是
+$$q_\alpha(x\mid \hat u_1,\hat u_2,q)=(1-\alpha)\,P^\star(x\mid \hat u_1,\hat u_2,q)+\frac{\alpha}{|\mathcal X|}.$$
 
-$$\log_2\frac{1}{q_\varepsilon(x^n\mid \cdot)}\le \log_2\frac1\varepsilon+n\log_2\frac{1}{\pi_{\min}},$$
+若 $(\hat u_1,\hat u_2,q)$ 不在 $P^\star$ 的支撑上，或该条件概率没有定义，固定约定把 $P^\star(x\mid \hat u_1,\hat u_2,q)$ 换成 $1/|\mathcal X|$。于是恒有 $q_\alpha(x\mid \hat u_1,\hat u_2,q)\ge \alpha/|\mathcal X|$。译码器不根据真实成功或失败更换预测。箱里只剩一个候选时，它仍不知道该候选是不是发端码字。
 
-损失有限。顺序是先令 $n\to\infty$，再令 $\varepsilon\downarrow 0$。$\varepsilon$ 固定时，典型性误差和恢复误差的归一化贡献趋于零；$\varepsilon\downarrow 0$ 再去掉混合带来的冗余。先让 $\varepsilon$ 趋于零会使有限块长上的损失上界失控。操作定义本身用的是消息互信息；平滑只服务对数损失这一读法。由 [编码模型](coding-model.md) 的后验充分性，消息的块后验达到与 $I(X^n;J_1,J_2)$ 相应的最小整块对数损失。
+块预测是乘积 $W(x^n\mid J)=\prod_t q_\alpha(x_t\mid \hat u_{1,t},\hat u_{2,t},q_t)$，由消息和已知调度确定。记 $\ell_\alpha=\log_2(1/W(X^n\mid J))$。后验 KL 不等式给出
 
-这一方案给出内界。它没有给出 converse，因此不是相关观测模型的精确区域。
+$$\mathbb E[\ell_\alpha]=H(X^n\mid J)+D(P_{X^n\mid J}\,\|\,W)\ge H(X^n\mid J),$$
+
+所以
+
+$$\frac1n I(X^n;J)\ge H(X)-\frac1n\mathbb E[\ell_\alpha].$$
+
+这是下界。不把 $I(X^n;J)$ 与 $I(X^n;\hat U_1^n,\hat U_2^n)$ 等同，也不把后者的归一化极限写成单字母互信息。
+
+成功和错误只在分析里分开。设 $\mathcal E$ 为：箱解码失败，或 $(X^n,U_1^n,U_2^n,Q^n)$ 的联合型离 $P^\star$ 超过 $\tau$。每个实现都满足
+
+$$0\le\ell_\alpha\le n\log_2\frac{|\mathcal X|}{\alpha},$$
+
+因此
+
+$$\frac1n\mathbb E[\ell_\alpha\mathbf{1}_{\mathcal E}]\le P(\mathcal E)\log_2\frac{|\mathcal X|}{\alpha}.$$
+
+在 $\mathcal E^c$ 上，译出的码字等于编码器选中的码字，并且联合型在容差内。此时
+
+$$q_\alpha(x\mid u_1,u_2,q)\ge(1-\alpha)\,P^\star(x\mid u_1,u_2,q).$$
+
+故
+
+$$\log_2\frac{1}{q_\alpha(x\mid u_1,u_2,q)}\le -\log_2(1-\alpha)+\log_2\frac{1}{P^\star(x\mid u_1,u_2,q)}.$$
+
+$\tau$-典型序列的经验交叉熵不超过 $H_{P^\star}(X\mid U_1,U_2,Q)+\eta(\tau)$，其中 $\eta(\tau)\to 0$ 随 $\tau\to 0$。有限字母上，强典型性只用到 $P^\star$ 支撑内的原子，$\log_2(1/P^\star)$ 在这些原子上有界，交叉熵对联合型连续。成功代价非负，成功事件的概率不超过 $1$，所以成功部分对平均代价的贡献不超过
+
+$$H_{P^\star}(X\mid U_1,U_2,Q)-\log_2(1-\alpha)+\eta(\tau).$$
+
+两项相加，
+
+$$\frac1n\mathbb E[\ell_\alpha]\le H_{P^\star}(X\mid U_1,U_2,Q)-\log_2(1-\alpha)+\eta(\tau)+P(\mathcal E)\log_2\frac{|\mathcal X|}{\alpha}.$$
+
+于是
+
+$$\frac1n I(X^n;J)\ge I_{P^\star}(X;U_1,U_2\mid Q)+\log_2(1-\alpha)-\eta(\tau)-P(\mathcal E)\log_2\frac{|\mathcal X|}{\alpha}.$$
+
+先固定 $\alpha\in(0,1)$。对任意 $\delta>0$，选 $\tau$ 使 $\eta(\tau)<\delta/2$，再选严格的速率裕量，使系综中 $P(\mathcal E)\log_2(|\mathcal X|/\alpha)<\delta/2$。按不超过系综平均的总惩罚固定码本，并取足够大的块长，得到
+
+$$\frac1n I(X^n;J)\ge I_{P^\star}(X;U_1,U_2\mid Q)+\log_2(1-\alpha)-\delta,$$
+
+同时 $(1/n)\log_2|\mathcal J_i|$ 不超过相应的 Berger–Tung 互信息加上该裕量。[编码模型](coding-model.md) 的重复加尾部把这个有限块长变成一条序列。$\delta$ 任意，闭包去掉裕量，于是平滑阈值 $I_{P^\star}(X;U_1,U_2\mid Q)+\log_2(1-\alpha)$ 可实现。
+
+再取 $\alpha_k=1/k$。第 $k$ 个有限块长码的归一化相关度至少是 $I_{P^\star}(X;U_1,U_2\mid Q)+\log_2(1-\alpha_k)-1/k$，速率裕量为 $1/k$。$\log_2(1-\alpha_k)\to 0$。这些点的极限是速率等于参考律中的 Berger–Tung 互信息、相关度阈值等于 $I_{P^\star}(X;U_1,U_2\mid Q)$ 的元组。操作区域取闭包，所以该元组可实现：存在某条确定性码序列，满足
+
+$$\liminf_{n\to\infty}\frac1n I(X^n;J)\ge I_{P^\star}(X;U_1,U_2\mid Q).$$
+
+这条序列上的归一化消息互信息不必收敛。不能先把 $\alpha$ 送到 $0$ 再让块长增长，否则 $\log_2(|\mathcal X|/\alpha)$ 会在 $P(\mathcal E)$ 消失之前失控。速率的非严格边界由同一个闭包收入。论证不使用 $Y_1-X-Y_2$。
+
+这是内界。它没有给出 converse，因此不是相关观测模型的精确区域。
 
 ### 三种更小的对象
 
@@ -106,7 +154,7 @@ $$\liminf_{n\to\infty}\Delta_n\le\min\bigl\{I(X;Y_1,Y_2),\,R_1+R_2\bigr\}.$$
 
 | 编号 | 陈述 | 状态 | 还缺什么 |
 | --- | --- | --- | --- |
-| I0 | 有限辅助字母上的远程量化分箱 | 可实现内界 | 不是完备性；$\Delta\le I(X;U_1,U_2\mid Q)$ 是可达到的阈值，不是消息互信息的上界 |
+| I0 | 有限辅助字母上的远程量化分箱 | 可实现内界 | 不是完备性；只证明相关度的 $\liminf$ 下界。$\Delta\le I(X;U_1,U_2\mid Q)$ 是可达到的阈值，不是消息互信息的上界，也不是它的极限值 |
 | O0 | $0\le\Delta\le\min\{I(X;Y_1,Y_2),R_1+R_2\}$ | 初等操作外界 | 无；它不解决分布式困难 |
 | C0 | 条件独立区域及其和速率投影 | 文献事实，仅 $Y_1-X-Y_2$ | 基数需回到原文附录核对；不能用于相关噪声 |
 | X0 | 内界与外界在相关二元族上重合 | 非结论 | 没有任何方向被证明匹配 |
