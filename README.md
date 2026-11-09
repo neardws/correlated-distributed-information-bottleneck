@@ -100,11 +100,15 @@ $$0\le\Delta\le\min\bigl\{I(X;Y_1,Y_2),\,R_1+R_2\bigr\}.$$
 
 这些界成立，而且通常很弱。更强的外界必须针对相关模型另行推导或引用，不能从条件独立公式直接搬来。
 
-对提议测试点 $(p,q)=(1/4,1/8)$，[校准与收缩](docs/proofs/calibration-and-contraction.md) 在固定参考 $P_V=(3,1,1,3)/8$ 上证明 $\eta_{\rm MI}=\eta_{\rm KL}=1/3$，并由此得到全块外界
+对提议测试点 $(p,q)=(1/4,1/8)$，[校准与收缩](docs/proofs/calibration-and-contraction.md) 保留固定参考 $P_V=(3,1,1,3)/8$ 上的集中系数 $\eta_{\rm MI}=\eta_{\rm KL}=1/3$。该系数属于集中编码。对无交互局部固定长度码，同一笔记证明
 
-$$\Delta\le\min\left\{\frac{R_1+R_2}{3},\frac34\bigl[1-h_2(1/6)\bigr]\right\}.$$
+$$I(X^m;J_1,J_2)\le\frac14\bigl[H(J_1)+H(J_2)\bigr]\le\frac14\log(M_1M_2),$$
 
-相同观测、有限单终端信息瓶颈和公平 BSC 上的 Mrs. Gerber 特例在同一笔记中按标准结果重证。$L\in[1/4,1/3]$ 与 $L=C_{\rm fin}$ 是该笔记中的操作事实。这个外界不是分布式可达性或紧界，统一严格间隙 $L<1/3$ 没有在该笔记中证明。
+所以 $L=C_{\rm fin}=1/4$。单终端 BSC 码族的效率趋于 $1/4$。操作外界是
+
+$$\Delta\le\min\left\{\frac{R_1+R_2}{4},\,I(X;V)\right\}.$$
+
+相同观测、有限单终端信息瓶颈和公平 BSC 上的 Mrs. Gerber 特例仍按标准结果重证。这不是完整正率区域：$G(r)=r/4$ 对全部正 $r$ 没有证明，也不是新颖性认证。2026 年文献全文仍未审核。
 
 对固定的有限字母源 $P$ 和乘积测试信道，定义
 
@@ -123,7 +127,7 @@ $$\Psi_\lambda(P^{\otimes 2})\;\stackrel{?}{=}\;2\Psi_\lambda(P).$$
 | [编码模型](docs/coding-model.md) | 非交互模型、块相关度、两种对数损失、可实现区域 |
 | [已知结果](docs/known-results.md) | 条件独立定理、CEO 与双信源定理、假设与未闭合的读法 |
 | [内界与外界台账](docs/bound-ledger.md) | 量化分箱内界、初等外界、测试点全块外界，以及不能移用的公式 |
-| [证明索引](docs/proofs/README.md) | 校准重证、固定参考 $1/3$ 收缩和全块外界的实际状态 |
+| [证明索引](docs/proofs/README.md) | 校准重证、集中 $1/3$ 系数、局部全块效率 $L=1/4$ |
 | [二元相关噪声族](docs/binary-family.md) | 参数、归一化、已解决基线、提议测试点 |
 | [未证明的问题](docs/open-questions.md) | 支撑泛函与二字母候选等式 |
 | [研究路线](docs/roadmap.md) | 后续证明工作的顺序和停止标准 |
